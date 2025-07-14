@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bomberos 7ma Compañía - Gestión de Llamados</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Bomberos 7ma Compañía en el lugar del llamado</h1>
+            <div class="call-info">
+                <div class="info-row">
+                    <div class="info-field">
+                        <label for="codigo">Código:</label>
+                        <input type="text" id="codigo" placeholder="Ej: 10-0-1">
+                    </div>
+                    <div class="info-field">
+                        <label for="tipo">Tipo:</label>
+                        <select id="tipo">
+                            <option value="">Seleccionar tipo</option>
+                            <option value="Incendio estructural">Incendio estructural</option>
+                            <option value="Incendio forestal">Incendio forestal</option>
+                            <option value="Rescate">Rescate</option>
+                            <option value="Accidente vehicular">Accidente vehicular</option>
+                            <option value="Emergencia médica">Emergencia médica</option>
+                            <option value="Materiales peligrosos">Materiales peligrosos</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-field address-field">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" placeholder="Ingrese la dirección del llamado">
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-field">
+                        <label for="hora-llamada">Hora llamada:</label>
+                        <input type="datetime-local" id="hora-llamada">
+                    </div>
+                    <div class="info-field">
+                        <label for="oficial-cargo">Nombre Oficial o voluntario a cargo:</label>
+                        <input type="text" id="oficial-cargo" placeholder="Nombre del oficial a cargo">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="columns-container">
+            <section class="column" id="column-1">
+                <div class="column-header">
+                    <h2>Total de voluntarios</h2>
+                    <button id="add-volunteer-btn" class="action-button">
+                        <i class="fas fa-plus"></i> Añadir Voluntario
+                    </button>
+                </div>
+                <div class="column-content" id="volunteers-list">
+                    <!-- Los voluntarios se cargarán dinámicamente aquí -->
+                </div>
+            </section>
+
+            <section class="column" id="column-2">
+                <div class="column-header">
+                    <h2>Voluntarios en el lugar</h2>
+                    <div class="counter" id="place-counter">Total en el lugar: 0</div>
+                </div>
+                <div class="column-content" id="volunteers-in-place">
+                    <!-- Los voluntarios en el lugar se mostrarán aquí -->
+                </div>
+            </section>
+
+            <section class="column" id="column-3">
+                <div class="column-header">
+                    <h2>Voluntarios en el interior del llamado</h2>
+                    <div class="counter" id="interior-counter">Total en interior: 0</div>
+                </div>
+                <div class="column-content" id="volunteers-inside">
+                    <!-- Los voluntarios en el interior se mostrarán aquí -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <button id="close-call-btn" class="primary-button">Cerrar llamado</button>
+        </footer>
+    </div>
+
+    <!-- Modal para añadir/editar voluntario -->
+    <div class="modal" id="volunteer-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Añadir Voluntario</h2>
+            <form id="volunteer-form">
+                <input type="hidden" id="volunteer-id">
+                <div class="form-group">
+                    <label for="registro">Número de Registro:</label>
+                    <input type="number" id="registro" required>
+                </div>
+                <div class="form-group">
+                    <label for="cargo">Cargo:</label>
+                    <select id="cargo">
+                        <option value="">Sin cargo</option>
+                        <option value="Director">Director</option>
+                        <option value="Capitán">Capitán</option>
+                        <option value="Secretario">Secretario</option>
+                        <option value="Teniente 1ero">Teniente 1ero</option>
+                        <option value="Teniente 2do">Teniente 2do</option>
+                        <option value="Teniente 3ero">Teniente 3ero</option>
+                        <option value="Maquinista">Maquinista</option>
+                        <option value="Ayudante">Ayudante</option>
+                        <option value="Bombero">Bombero</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="primary-button">Guardar</button>
+                    <button type="button" class="secondary-button" id="cancel-btn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para cerrar llamado -->
+    <div class="modal" id="confirm-modal">
+        <div class="modal-content">
+            <h2>Confirmar cierre de llamado</h2>
+            <p>¿Está seguro que desea cerrar este llamado? Todos los datos serán guardados.</p>
+            <div class="form-actions">
+                <button class="primary-button" id="confirm-close-btn">Confirmar</button>
+                <button class="secondary-button" id="cancel-close-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "bomberos-app",
+  "version": "1.0.0",
+  "description": "Aplicación web para gestión de bomberos en llamado",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "frontend": "cd frontend && live-server"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  }
+}
